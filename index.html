@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Branches Locator - Nationwide Branch Network & Explorer</title>
+  <meta name="description" content="Explore our nationwide branch network with interactive locator, instant search, district filters, turn-by-turn directions and multiple design styles.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/png" href="favicon.png">
+
+  <!-- Fonts (Bengali & English) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 & Bootstrap Icons (Local Assets) -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-icons.min.css">
+
+  <!-- Leaflet CSS for Map View (Local + CDN fallback) -->
+  <link rel="stylesheet" href="css/leaflet.css">
+
+  <!-- Application Styles (All 4 Styles & Themes) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===================== TOP CONTROL & STYLE SWITCHER BAR ===================== -->
+  <header class="br-app-bar">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-3">
+      <!-- Brand & Title -->
+      <a href="index.html" class="br-brand">
+        <div class="br-brand-icon">
+          <i class="bi bi-buildings"></i>
+        </div>
+        <div class="br-brand-title">
+          Branches Locator
+          <small>Branch Network &amp; GIS Directory</small>
+        </div>
+      </a>
+
+      <!-- Style Switcher (4 Selectable Styles) -->
+      <div class="d-flex align-items-center gap-2 flex-wrap">
+        <nav class="br-style-switcher" aria-label="Layout style selector">
+          <button type="button" class="style-pill active" data-style="cards" title="Modern Card Grid View">
+            <i class="bi bi-grid-fill"></i>
+            <span>Card Grid</span>
+          </button>
+          <button type="button" class="style-pill" data-style="map" title="Interactive Split Map View">
+            <i class="bi bi-map-fill"></i>
+            <span>Interactive Map</span>
+          </button>
+          <button type="button" class="style-pill" data-style="directory" title="Grouped District Directory">
+            <i class="bi bi-folder-fill"></i>
+            <span>District Directory</span>
+          </button>
+          <button type="button" class="style-pill" data-style="table" title="Data Table View">
+            <i class="bi bi-table"></i>
+            <span>Data Table</span>
+          </button>
+        </nav>
+
+        <!-- Theme Toggle -->
+        <button type="button" class="theme-toggle-btn" id="btnThemeToggle" title="Switch Theme (Emerald / Sapphire / Dark)">
+          <i class="bi bi-sun-fill"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== HERO SECTION ===================== -->
+  <section class="br-hero">
+    <div class="br-hero-blob br-hero-blob-1"></div>
+    <div class="br-hero-blob br-hero-blob-2"></div>
+    <span class="br-ring br-ring-1"></span>
+    <span class="br-ring br-ring-2"></span>
+    <span class="br-ring br-ring-3"></span>
+
+    <div class="container position-relative text-center" style="z-index: 2;">
+      <span class="br-tag">
+        <i class="br-dot"></i> BRANCH NETWORK
+      </span>
+      <h1 class="br-title">Our <span>Branches</span></h1>
+      <p class="br-sub">Nationwide network serving communities across Bangladesh</p>
+    </div>
+
+    <!-- Wave Transition -->
+    <svg class="br-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,40 C240,90 480,0 720,30 C960,60 1200,90 1440,35 L1440,80 L0,80 Z"></path>
+    </svg>
+  </section>
+
+  <!-- ===================== STATS COUNTERS ===================== -->
+  <section class="br-stats-wrap">
+    <div class="container">
+      <div class="br-stats">
+        <div class="br-stat">
+          <span class="br-stat-ico"><i class="bi bi-geo-alt-fill"></i></span>
+          <h2 class="br-count" data-target="4">0</h2>
+          <small>Districts</small>
+        </div>
+        <div class="br-stat">
+          <span class="br-stat-ico"><i class="bi bi-pin-map-fill"></i></span>
+          <h2 class="br-count" data-target="16">0</h2>
+          <small>Upazila</small>
+        </div>
+        <div class="br-stat">
+          <span class="br-stat-ico"><i class="bi bi-buildings-fill"></i></span>
+          <h2 class="br-count" data-target="30">0</h2>
+          <small>Total Branches</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MAIN CONTENT CONTAINER ===================== -->
+  <main class="br-main">
+    <div class="br-main-blob br-main-blob-1"></div>
+    <div class="br-main-blob br-main-blob-2"></div>
+
+    <div class="container position-relative" style="z-index: 2;">
+
+      <!-- ================= SEARCH & FILTER CONTROL ================= -->
+      <div class="br-filter br-reveal is-visible" style="--delay: 0ms;">
+        <div class="br-search-row">
+          <!-- Live Text Search -->
+          <div class="br-search">
+            <i class="bi bi-search"></i>
+            <input type="text" id="brSearchInput" placeholder="Search by branch name, district, upazila, address, phone..." autocomplete="off">
+          </div>
+
+          <!-- District Filter Dropdown -->
+          <div class="br-search-actions">
+            <select id="brDistrictSelect" class="br-filter-select" aria-label="Filter by District">
+              <option value="all">All Districts (সকল জেলা)</option>
+              <option value="Satkhira">Satkhira (সাতক্ষীরা)</option>
+              <option value="Jashore">Jashore (যশোর)</option>
+              <option value="Khulna">Khulna (খুলনা)</option>
+              <option value="Jhenaidah">Jhenaidah (ঝিনাইদহ)</option>
+            </select>
+
+            <!-- GPS "Near Me" Button -->
+            <button type="button" class="br-btn-gps" id="btnNearMe" title="Find nearest branches with GPS">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>Near Me</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Area Chip Pills -->
+        <div class="br-areas">
+          <span class="br-areas-label"><i class="bi bi-funnel-fill"></i> Area</span>
+          <div class="br-chips">
+            <button type="button" class="br-chip active" data-area="all">All Areas</button>
+            <button type="button" class="br-chip" data-area="Tala">Tala</button>
+            <button type="button" class="br-chip" data-area="Kalaroa">Kalaroa</button>
+            <button type="button" class="br-chip" data-area="Assasuni">Assasuni</button>
+            <button type="button" class="br-chip" data-area="Jashore">Jashore</button>
+            <button type="button" class="br-chip" data-area="Chowgacha">Chowgacha</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result Count Bar -->
+      <div class="br-result-bar br-reveal is-visible" style="--delay: 50ms;">
+        <span id="brResultCount">Showing <b>30</b> of <b>30</b> branches</span>
+        <button type="button" class="btn btn-sm btn-link text-decoration-none text-muted p-0" onclick="resetBranchFilters()">
+          <i class="bi bi-arrow-clockwise me-1"></i>Reset Filters
+        </button>
+      </div>
+
+      <!-- ================= EMPTY STATE ================= -->
+      <div class="br-empty" id="brEmptyState" style="display: none;">
+        <div class="br-empty-ico">
+          <i class="bi bi-search"></i>
+        </div>
+        <h4>No Branches Found</h4>
+        <p>No branch locations match your active search and filter criteria.</p>
+        <button type="button" class="btn btn-outline-success rounded-pill px-4" onclick="resetBranchFilters()">
+          <i class="bi bi-arrow-clockwise me-1"></i> Clear Filters
+        </button>
+      </div>
+
+      <!-- ================= STYLE 1: MODERN CARD GRID ================= -->
+      <div class="row g-3 g-lg-4" id="cardsContainer">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- ================= STYLE 2: INTERACTIVE SPLIT MAP VIEW ================= -->
+      <div class="map-layout" id="mapLayout" style="display: none;">
+        <!-- Left Sidebar: Branch List & Quick Navigation -->
+        <aside class="map-sidebar">
+          <div class="map-sidebar-head d-flex justify-content-between align-items-center">
+            <h5 class="m-0 fw-bold"><i class="bi bi-pin-map-fill text-success me-2"></i>Branches List</h5>
+            <small class="text-muted">Click to view on map</small>
+          </div>
+          <div class="map-sidebar-list" id="mapSidebarList">
+            <!-- Populated dynamically by app.js -->
+          </div>
+        </aside>
+
+        <!-- Right Side: Interactive Leaflet Map -->
+        <section class="map-canvas-container">
+          <div id="leafletMap"></div>
+        </section>
+      </div>
+
+      <!-- ================= STYLE 3: HIERARCHICAL DISTRICT & UPAZILA DIRECTORY ================= -->
+      <div id="directoryContainer" style="display: none;">
+        <!-- Populated dynamically by app.js -->
+      </div>
+
+      <!-- ================= STYLE 4: ADMINISTRATIVE DATA TABLE VIEW ================= -->
+      <div class="table-panel" id="tableContainer" style="display: none;">
+        <div class="table-panel-header">
+          <h5 class="m-0 fw-bold"><i class="bi bi-table text-success me-2"></i>Branch Network Directory</h5>
+          <div class="table-export-btns">
+            <button type="button" class="btn-export" id="btnExportCsv" title="Export as CSV spreadsheet">
+              <i class="bi bi-file-earmark-spreadsheet-fill text-success"></i> Export CSV
+            </button>
+            <button type="button" class="btn-export" id="btnPrintTable" title="Print directory">
+              <i class="bi bi-printer-fill text-primary"></i> Print
+            </button>
+          </div>
+        </div>
+        <div class="br-table-responsive">
+          <table class="br-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Branch Name</th>
+                <th>District</th>
+                <th>Upazila / Area</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="brTableBody">
+              <!-- Populated dynamically by app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===================== FOOTER CREDITS ===================== -->
+  <footer class="br-credit-bar">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-2">
+      <div>
+        &copy; 2026 <strong>Branches Locator</strong>. All rights reserved.
+      </div>
+      <div>
+        Developed with <i class="bi bi-heart-fill text-danger"></i> by
+        <a href="https://royaltechbd.com/" target="_blank" rel="noopener">Royal Technologies</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== JAVASCRIPT LIBRARIES & SCRIPTS ===================== -->
+  <!-- Bootstrap 5 Bundle (Local) -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+
+  <!-- Leaflet GIS Engine (Local + CDN Fallback) -->
+  <script src="js/leaflet.js"></script>
+  <script>
+    if (typeof L === 'undefined') {
+      document.write('<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>');
+    }
+  </script>
+
+  <!-- Branches Dataset (30 Branches) -->
+  <script src="js/branches-data.js"></script>
+
+  <!-- Application Controller -->
+  <script src="js/app.js"></script>
+
+</body>
+</html>

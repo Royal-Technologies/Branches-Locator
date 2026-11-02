@@ -1,0 +1,725 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.1652,
+          23.2384
+        ]
+      },
+      "properties": {
+        "id": 1,
+        "name": "Satmile",
+        "bn_name": "সাতমাইল শাখা",
+        "area": "Chowgacha",
+        "district": "যশোর",
+        "district_en": "Jashore",
+        "upazila": "যশোর সদর",
+        "upazila_en": "Jashore Sadar",
+        "address": "গ্রামঃ বারী নগর বাজার, পোস্টঃ বারী নগর বাজার, থানাঃ যশোর সদর, জেলাঃ যশোর।",
+        "phone": "01334917505",
+        "email": "upsatmaile0029@gmail.com",
+        "map_url": "https://maps.google.com/?q=23.2384,89.1652"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.9124,
+          23.3512
+        ]
+      },
+      "properties": {
+        "id": 2,
+        "name": "Moheshpur",
+        "bn_name": "মহেশপুর শাখা",
+        "area": "Chowgacha",
+        "district": "ঝিনাইদহ",
+        "district_en": "Jhenaidah",
+        "upazila": "মহেশপুর",
+        "upazila_en": "Moheshpur",
+        "address": "গ্রামঃ উপজেলা পাড়া, পোস্টঃ মহেশপুর, থানাঃ মহেশপুর, জেলাঃ ঝিনাইদহ।",
+        "phone": "01334917511",
+        "email": "upmoheshpur027@gmail.com",
+        "map_url": "https://maps.google.com/?q=23.3512,88.9124"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.0124,
+          23.4021
+        ]
+      },
+      "properties": {
+        "id": 3,
+        "name": "Kotchandpur",
+        "bn_name": "কোটচাঁদপুর শাখা",
+        "area": "Chowgacha",
+        "district": "ঝিনাইদহ",
+        "district_en": "Jhenaidah",
+        "upazila": "কোটচাঁদপুর",
+        "upazila_en": "Kotchandpur",
+        "address": "গ্রামঃ মোহাম্মদপুর, পোস্টঃ গঙ্গানন্দপুর, থানাঃ কোটচাঁদপুর, জেলাঃ ঝিনাইদহ।",
+        "phone": "01334917531",
+        "email": "upchutipur026@gmail.com",
+        "map_url": "https://maps.google.com/?q=23.4021,89.0124"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.0812,
+          23.2141
+        ]
+      },
+      "properties": {
+        "id": 4,
+        "name": "Chutipur",
+        "bn_name": "ছুটিপুর শাখা",
+        "area": "Chowgacha",
+        "district": "যশোর",
+        "district_en": "Jashore",
+        "upazila": "চৌগাছা",
+        "upazila_en": "Chowgacha",
+        "address": "গ্রামঃ ছুটিপুর বাজার, থানাঃ চৌগাছা, জেলাঃ যশোর।",
+        "phone": "01334917542",
+        "email": "upchougacha@gmail.com",
+        "map_url": "https://maps.google.com/?q=23.2141,89.0812"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.0264,
+          23.2628
+        ]
+      },
+      "properties": {
+        "id": 5,
+        "name": "Chowgacha",
+        "bn_name": "চৌগাছা শাখা",
+        "area": "Chowgacha",
+        "district": "যশোর",
+        "district_en": "Jashore",
+        "upazila": "চৌগাছা",
+        "upazila_en": "Chowgacha",
+        "address": "গ্রামঃ পাঁচনামনা, পোস্টঃ চৌগাছা সদর, থানাঃ চৌগাছা, জেলাঃ যশোর।",
+        "phone": "01334917542",
+        "email": "upchougacha@gmail.com",
+        "map_url": "https://maps.google.com/?q=23.2628,89.0264"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.9832,
+          23.0762
+        ]
+      },
+      "properties": {
+        "id": 6,
+        "name": "Sharsha",
+        "bn_name": "শার্শা শাখা",
+        "area": "Jashore",
+        "district": "যশোর",
+        "district_en": "Jashore",
+        "upazila": "শার্শা",
+        "upazila_en": "Sharsha",
+        "address": "শার্শা সদর বাজার, থানাঃ শার্শা, জেলাঃ যশোর।",
+        "phone": "01334917535",
+        "email": "upsharsha0021@gmail.com",
+        "map_url": "https://maps.google.com/?q=23.0762,88.9832"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.1321,
+          23.1025
+        ]
+      },
+      "properties": {
+        "id": 7,
+        "name": "Jhikargacha",
+        "bn_name": "ঝিকরগাছা শাখা",
+        "area": "Jashore",
+        "district": "যশোর",
+        "district_en": "Jashore",
+        "upazila": "ঝিকরগাছা",
+        "upazila_en": "Jhikargacha",
+        "address": "পোস্ট ও থানাঃ ঝিকরগাছা, জেলাঃ যশোর।",
+        "phone": "01334917550",
+        "email": "upjhikorgachha@gmail.com",
+        "map_url": "https://maps.google.com/?q=23.1025,89.1321"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.1824,
+          23.0112
+        ]
+      },
+      "properties": {
+        "id": 8,
+        "name": "Khedapara",
+        "bn_name": "খেদাপাড়া শাখা",
+        "area": "Jashore",
+        "district": "যশোর",
+        "district_en": "Jashore",
+        "upazila": "মনিরামপুর",
+        "upazila_en": "Manirampur",
+        "address": "খেদাপাড়া বাজার, থানাঃ মনিরামপুর, জেলাঃ যশোর।",
+        "phone": "01334917529",
+        "email": "upkhedapara0020@gmail.com",
+        "map_url": "https://maps.google.com/?q=23.0112,89.1824"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.0521,
+          23.0421
+        ]
+      },
+      "properties": {
+        "id": 9,
+        "name": "Bakra",
+        "bn_name": "বাঁকড়া শাখা",
+        "area": "Jashore",
+        "district": "যশোর",
+        "district_en": "Jashore",
+        "upazila": "ঝিকরগাছা",
+        "upazila_en": "Jhikargacha",
+        "address": "বাঁকড়া বাজার, থানাঃ ঝিকরগাছা, জেলাঃ যশোর।",
+        "phone": "01334917532",
+        "email": "upbakra19@gmail.com",
+        "map_url": "https://maps.google.com/?q=23.0421,89.0521"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.1852,
+          22.9052
+        ]
+      },
+      "properties": {
+        "id": 10,
+        "name": "Trimohini (Unit 1)",
+        "bn_name": "ত্রিমোহিনী শাখা (১)",
+        "area": "Jashore",
+        "district": "যশোর",
+        "district_en": "Jashore",
+        "upazila": "কেশবপুর",
+        "upazila_en": "Keshabpur",
+        "address": "ত্রিমোহিনী বাজার, থানাঃ কেশবপুর, জেলাঃ যশোর।",
+        "phone": "01334917530",
+        "email": "uptrimohini@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.9052,89.1852"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.1925,
+          22.9122
+        ]
+      },
+      "properties": {
+        "id": 11,
+        "name": "Trimohoni (Unit 2)",
+        "bn_name": "ত্রিমোহিনী শাখা (২)",
+        "area": "Jashore",
+        "district": "যশোর",
+        "district_en": "Jashore",
+        "upazila": "কেশবপুর",
+        "upazila_en": "Keshabpur",
+        "address": "ত্রিমোহিনী রোড, কেশবপুর, জেলাঃ যশোর।",
+        "phone": "01334917530",
+        "email": "uptrimohini@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.9122,89.1925"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.9412,
+          23.0125
+        ]
+      },
+      "properties": {
+        "id": 12,
+        "name": "Bagachra",
+        "bn_name": "বাগআঁচড়া শাখা",
+        "area": "Jashore",
+        "district": "যশোর",
+        "district_en": "Jashore",
+        "upazila": "শার্শা",
+        "upazila_en": "Sharsha",
+        "address": "বাগআঁচড়া বাজার, থানাঃ শার্শা, জেলাঃ যশোর।",
+        "phone": "01334917540",
+        "email": "upbagasra0023@gmail.com",
+        "map_url": "https://maps.google.com/?q=23.0125,88.9412"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.0912,
+          22.8941
+        ]
+      },
+      "properties": {
+        "id": 13,
+        "name": "Gazirhat",
+        "bn_name": "গাজিরহাট শাখা",
+        "area": "Kalaroa",
+        "district": "সাতক্ষীরা",
+        "district_en": "Satkhira",
+        "upazila": "কলারোয়া",
+        "upazila_en": "Kalaroa",
+        "address": "গাজিরহাট বাজার, থানাঃ কলারোয়া, জেলাঃ সাতক্ষীরা।",
+        "phone": "01334917534",
+        "email": "upgazirhat@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.8941,89.0912"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.0422,
+          22.8752
+        ]
+      },
+      "properties": {
+        "id": 14,
+        "name": "Kolaroa",
+        "bn_name": "কলারোয়া শাখা",
+        "area": "Kalaroa",
+        "district": "সাতক্ষীরা",
+        "district_en": "Satkhira",
+        "upazila": "কলারোয়া",
+        "upazila_en": "Kalaroa",
+        "address": "কলারোয়া পৌরসভা বাজার, থানাঃ কলারোয়া, জেলাঃ সাতক্ষীরা।",
+        "phone": "01334917528",
+        "email": "upkolaroa0014@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.8752,89.0422"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.0705,
+          22.7185
+        ]
+      },
+      "properties": {
+        "id": 15,
+        "name": "Satkhira Sadar",
+        "bn_name": "সাতক্ষীরা সদর শাখা",
+        "area": "Kalaroa",
+        "district": "সাতক্ষীরা",
+        "district_en": "Satkhira",
+        "upazila": "সাতক্ষীরা সদর",
+        "upazila_en": "Satkhira Sadar",
+        "address": "সাতক্ষীরা পৌরসভা, সদর, জেলাঃ সাতক্ষীরা।",
+        "phone": "01334917527",
+        "email": "upsatkhirasadar0013@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.7185,89.0705"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.0431,
+          22.8423
+        ]
+      },
+      "properties": {
+        "id": 16,
+        "name": "Fulbaria",
+        "bn_name": "ফুলবাড়িয়া শাখা",
+        "area": "Kalaroa",
+        "district": "সাতক্ষীরা",
+        "district_en": "Satkhira",
+        "upazila": "কলারোয়া",
+        "upazila_en": "Kalaroa",
+        "address": "ফুলবাড়িয়া বাজার, থানাঃ কলারোয়া, জেলাঃ সাতক্ষীরা।",
+        "phone": "01334917525",
+        "email": "upfulbari0009@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.8423,89.0431"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.1025,
+          22.6738
+        ]
+      },
+      "properties": {
+        "id": 17,
+        "name": "Brahmarajpur",
+        "bn_name": "ব্রহ্মরাজপুর শাখা",
+        "area": "Kalaroa",
+        "district": "সাতক্ষীরা",
+        "district_en": "Satkhira",
+        "upazila": "সাতক্ষীরা সদর",
+        "upazila_en": "Satkhira Sadar",
+        "address": "ব্রহ্মরাজপুর বাজার, থানাঃ সাতক্ষীরা সদর, জেলাঃ সাতক্ষীরা।",
+        "phone": "01334917518",
+        "email": "upbrammarajpur0005@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.6738,89.1025"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.1623,
+          22.4612
+        ]
+      },
+      "properties": {
+        "id": 18,
+        "name": "Annulia",
+        "bn_name": "অনুলিয়া শাখা",
+        "area": "Assasuni",
+        "district": "সাতক্ষীরা",
+        "district_en": "Satkhira",
+        "upazila": "আশাশুনি",
+        "upazila_en": "Assasuni",
+        "address": "অনুলিয়া বাজার, থানাঃ আশাশুনি, জেলাঃ সাতক্ষীরা।",
+        "phone": "01334917549",
+        "email": "upanulia2025@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.4612,89.1623"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.1714,
+          22.5492
+        ]
+      },
+      "properties": {
+        "id": 19,
+        "name": "Assasuni",
+        "bn_name": "আশাশুনি প্রধান শাখা",
+        "area": "Assasuni",
+        "district": "সাতক্ষীরা",
+        "district_en": "Satkhira",
+        "upazila": "আশাশুনি",
+        "upazila_en": "Assasuni",
+        "address": "আশাশুনি সদর বাজার, থানাঃ আশাশুনি, জেলাঃ সাতক্ষীরা।",
+        "phone": "01334917541",
+        "email": "assasuniup@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.5492,89.1714"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.2941,
+          22.4102
+        ]
+      },
+      "properties": {
+        "id": 20,
+        "name": "Bagali",
+        "bn_name": "বাগালী শাখা",
+        "area": "Assasuni",
+        "district": "খুলনা",
+        "district_en": "Khulna",
+        "upazila": "কয়রা",
+        "upazila_en": "Koyra",
+        "address": "বাগালী বাজার, থানাঃ কয়রা, জেলাঃ খুলনা।",
+        "phone": "01334917548",
+        "email": "upbagali0017@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.4102,89.2941"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.1524,
+          22.5831
+        ]
+      },
+      "properties": {
+        "id": 21,
+        "name": "Kulla",
+        "bn_name": "কুল্যা শাখা",
+        "area": "Assasuni",
+        "district": "সাতক্ষীরা",
+        "district_en": "Satkhira",
+        "upazila": "আশাশুনি",
+        "upazila_en": "Assasuni",
+        "address": "কুল্যা বাজার, থানাঃ আশাশুনি, জেলাঃ সাতক্ষীরা।",
+        "phone": "01334917526",
+        "email": "upkulla0016@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.5831,89.1524"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.2215,
+          22.5112
+        ]
+      },
+      "properties": {
+        "id": 22,
+        "name": "Baradal",
+        "bn_name": "বড়দল শাখা",
+        "area": "Assasuni",
+        "district": "সাতক্ষীরা",
+        "district_en": "Satkhira",
+        "upazila": "আশাশুনি",
+        "upazila_en": "Assasuni",
+        "address": "বড়দল বাজার, থানাঃ আশাশুনি, জেলাঃ সাতক্ষীরা।",
+        "phone": "01334917520",
+        "email": "upgouldanga0012@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.5112,89.2215"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.1832,
+          22.6021
+        ]
+      },
+      "properties": {
+        "id": 23,
+        "name": "Kadakati",
+        "bn_name": "কাদাকাটি শাখা",
+        "area": "Assasuni",
+        "district": "সাতক্ষীরা",
+        "district_en": "Satkhira",
+        "upazila": "আশাশুনি",
+        "upazila_en": "Assasuni",
+        "address": "কাদাকাটি বাজার, থানাঃ আশাশুনি, জেলাঃ সাতক্ষীরা।",
+        "phone": "01334917522",
+        "email": "upkadakati0011@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.6021,89.1832"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.1915,
+          22.4821
+        ]
+      },
+      "properties": {
+        "id": 24,
+        "name": "Khajra",
+        "bn_name": "খাজরা শাখা",
+        "area": "Assasuni",
+        "district": "সাতক্ষীরা",
+        "district_en": "Satkhira",
+        "upazila": "আশাশুনি",
+        "upazila_en": "Assasuni",
+        "address": "খাজরা বাজার, থানাঃ আশাশুনি, জেলাঃ সাতক্ষীরা।",
+        "phone": "01334917521",
+        "email": "upkhajra0010@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.4821,89.1915"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.2714,
+          22.5621
+        ]
+      },
+      "properties": {
+        "id": 25,
+        "name": "Baka",
+        "bn_name": "বাঁকা শাখা",
+        "area": "Assasuni",
+        "district": "খুলনা",
+        "district_en": "Khulna",
+        "upazila": "পাইকগাছা",
+        "upazila_en": "Paikgachha",
+        "address": "বাঁকা বাজার, চান্দখালী রোড, পাইকগাছা, জেলাঃ খুলনা।",
+        "phone": "01758569010",
+        "email": "upchandkhalibranch@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.5621,89.2714"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.1764,
+          22.7011
+        ]
+      },
+      "properties": {
+        "id": 26,
+        "name": "Khalishkhali",
+        "bn_name": "খলিশখালী শাখা",
+        "area": "tala",
+        "district": "সাতক্ষীরা",
+        "district_en": "Satkhira",
+        "upazila": "তালা",
+        "upazila_en": "Tala",
+        "address": "খলিশখালী বাজার, থানাঃ তালা, জেলাঃ সাতক্ষীরা।",
+        "phone": "01743110340",
+        "email": "upkhaliskhali00082022@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.7011,89.1764"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.2625,
+          22.8021
+        ]
+      },
+      "properties": {
+        "id": 27,
+        "name": "Atharomile",
+        "bn_name": "১৮ মাইল শাখা",
+        "area": "tala",
+        "district": "খুলনা",
+        "district_en": "Khulna",
+        "upazila": "ডুমুরিয়া",
+        "upazila_en": "Dumuria",
+        "address": "১৮ মাইল বাজার, কুমিরা রোড, ডুমুরিয়া, জেলাঃ খুলনা।",
+        "phone": "01758336141",
+        "email": "upkumira0007@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.8021,89.2625"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.2892,
+          22.6841
+        ]
+      },
+      "properties": {
+        "id": 28,
+        "name": "Kapilmuni",
+        "bn_name": "কপিলমুনি শাখা",
+        "area": "tala",
+        "district": "খুলনা",
+        "district_en": "Khulna",
+        "upazila": "পাইকগাছা",
+        "upazila_en": "Paikgachha",
+        "address": "কপিলমুনি বাজার, থানাঃ পাইকগাছা, জেলাঃ খুলনা।",
+        "phone": "01718775208",
+        "email": "kopilmuni00003@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.6841,89.2892"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.2132,
+          22.7712
+        ]
+      },
+      "properties": {
+        "id": 29,
+        "name": "Patkelghata",
+        "bn_name": "পাটকেলঘাটা শাখা",
+        "area": "tala",
+        "district": "সাতক্ষীরা",
+        "district_en": "Satkhira",
+        "upazila": "তালা",
+        "upazila_en": "Tala",
+        "address": "পাটকেলঘাটা বাজার, থানাঃ তালা, জেলাঃ সাতক্ষীরা।",
+        "phone": "01752819180",
+        "email": "uppatkelghata0002@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.7712,89.2132"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.2553,
+          22.7562
+        ]
+      },
+      "properties": {
+        "id": 30,
+        "name": "Tala",
+        "bn_name": "তালা প্রধান শাখা",
+        "area": "tala",
+        "district": "সাতক্ষীরা",
+        "district_en": "Satkhira",
+        "upazila": "তালা",
+        "upazila_en": "Tala",
+        "address": "তালা প্রধান কার্যালয় রোড, থানাঃ তালা, জেলাঃ সাতক্ষীরা।",
+        "phone": "01721586815",
+        "email": "uptala0001@gmail.com",
+        "map_url": "https://maps.google.com/?q=22.7562,89.2553"
+      }
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Branches Locator - District Directory Style</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top App Bar -->
+  <header class="br-app-bar">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-3">
+      <a href="index.html" class="br-brand">
+        <div class="br-brand-icon"><i class="bi bi-folder-fill"></i></div>
+        <div class="br-brand-title">District Directory Style <small>Branches Locator</small></div>
+      </a>
+      <div class="d-flex align-items-center gap-2">
+        <a href="index.html" class="btn btn-sm btn-outline-success rounded-pill fw-semibold">
+          <i class="bi bi-arrow-left me-1"></i> All Styles
+        </a>
+        <button type="button" class="theme-toggle-btn" id="btnThemeToggle"><i class="bi bi-sun-fill"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="br-hero" style="padding-bottom: 50px;">
+    <div class="br-hero-blob br-hero-blob-1"></div>
+    <div class="br-hero-blob br-hero-blob-2"></div>
+    <div class="container position-relative text-center" style="z-index: 2;">
+      <span class="br-tag"><i class="br-dot"></i> STYLE 3 &bull; DISTRICT DIRECTORY</span>
+      <h1 class="br-title">Branch <span>Directory</span></h1>
+      <p class="br-sub">Hierarchical organization grouped by District &amp; Upazila</p>
+    </div>
+  </section>
+
+  <!-- Main Directory Content -->
+  <main class="br-main" style="padding-top: 20px;">
+    <div class="container position-relative" style="z-index: 2;">
+      <!-- Search & Filters -->
+      <div class="br-filter">
+        <div class="br-search-row">
+          <div class="br-search">
+            <i class="bi bi-search"></i>
+            <input type="text" id="brSearchInput" placeholder="Search branch name, district, area...">
+          </div>
+          <div class="br-search-actions">
+            <select id="brDistrictSelect" class="br-filter-select">
+              <option value="all">All Districts (সকল জেলা)</option>
+              <option value="Satkhira">Satkhira (সাতক্ষীরা)</option>
+              <option value="Jashore">Jashore (যশোর)</option>
+              <option value="Khulna">Khulna (খুলনা)</option>
+              <option value="Jhenaidah">Jhenaidah (ঝিনাইদহ)</option>
+            </select>
+            <button type="button" class="br-btn-gps" id="btnNearMe"><i class="bi bi-geo-alt-fill"></i> Near Me</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="br-result-bar">
+        <span id="brResultCount">Showing <b>30</b> branches grouped by district</span>
+        <button type="button" class="btn btn-sm btn-link text-decoration-none text-muted" onclick="resetBranchFilters()">Reset Filters</button>
+      </div>
+
+      <!-- Directory Container -->
+      <div id="directoryContainer" style="display: block;"></div>
+    </div>
+  </main>
+
+  <footer class="br-credit-bar">
+    <div class="container d-flex justify-content-between flex-wrap gap-2">
+      <div>&copy; 2026 Branches Locator. All rights reserved.</div>
+      <div>Developed by <a href="https://royaltechbd.com/" target="_blank" rel="noopener">Royal Technologies</a></div>
+    </div>
+  </footer>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/branches-data.js"></script>
+  <script>
+    localStorage.setItem('branch_style', 'directory');
+  </script>
+  <script src="js/app.js"></script>
+</body>
+</html>

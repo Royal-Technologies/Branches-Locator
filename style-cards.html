@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Branches Locator - Modern Card Grid Style</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top App Bar -->
+  <header class="br-app-bar">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-3">
+      <a href="index.html" class="br-brand">
+        <div class="br-brand-icon"><i class="bi bi-grid-fill"></i></div>
+        <div class="br-brand-title">Card Grid Style <small>Branches Locator</small></div>
+      </a>
+      <div class="d-flex align-items-center gap-2">
+        <a href="index.html" class="btn btn-sm btn-outline-success rounded-pill fw-semibold">
+          <i class="bi bi-arrow-left me-1"></i> All Styles
+        </a>
+        <button type="button" class="theme-toggle-btn" id="btnThemeToggle"><i class="bi bi-sun-fill"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="br-hero">
+    <div class="br-hero-blob br-hero-blob-1"></div>
+    <div class="br-hero-blob br-hero-blob-2"></div>
+    <span class="br-ring br-ring-1"></span>
+    <span class="br-ring br-ring-2"></span>
+    <div class="container position-relative text-center" style="z-index: 2;">
+      <span class="br-tag"><i class="br-dot"></i> STYLE 1 &bull; CARD GRID</span>
+      <h1 class="br-title">Our <span>Branches</span></h1>
+      <p class="br-sub">Nationwide network serving communities across Bangladesh</p>
+    </div>
+    <svg class="br-wave" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,30 C960,60 1200,90 1440,35 L1440,80 L0,80 Z"></path></svg>
+  </section>
+
+  <!-- Stats Counters -->
+  <section class="br-stats-wrap">
+    <div class="container">
+      <div class="br-stats">
+        <div class="br-stat">
+          <span class="br-stat-ico"><i class="bi bi-geo-alt-fill"></i></span>
+          <h2 class="br-count" data-target="4">0</h2>
+          <small>Districts</small>
+        </div>
+        <div class="br-stat">
+          <span class="br-stat-ico"><i class="bi bi-pin-map-fill"></i></span>
+          <h2 class="br-count" data-target="16">0</h2>
+          <small>Upazila</small>
+        </div>
+        <div class="br-stat">
+          <span class="br-stat-ico"><i class="bi bi-buildings-fill"></i></span>
+          <h2 class="br-count" data-target="30">0</h2>
+          <small>Total Branches</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Grid Content -->
+  <main class="br-main">
+    <div class="container position-relative" style="z-index: 2;">
+      <!-- Search & Filters -->
+      <div class="br-filter">
+        <div class="br-search-row">
+          <div class="br-search">
+            <i class="bi bi-search"></i>
+            <input type="text" id="brSearchInput" placeholder="Search branch name, district, area...">
+          </div>
+          <div class="br-search-actions">
+            <select id="brDistrictSelect" class="br-filter-select">
+              <option value="all">All Districts (সকল জেলা)</option>
+              <option value="Satkhira">Satkhira (সাতক্ষীরা)</option>
+              <option value="Jashore">Jashore (যশোর)</option>
+              <option value="Khulna">Khulna (খুলনা)</option>
+              <option value="Jhenaidah">Jhenaidah (ঝিনাইদহ)</option>
+            </select>
+            <button type="button" class="br-btn-gps" id="btnNearMe"><i class="bi bi-geo-alt-fill"></i> Near Me</button>
+          </div>
+        </div>
+
+        <div class="br-areas">
+          <span class="br-areas-label"><i class="bi bi-funnel-fill"></i> Area</span>
+          <div class="br-chips">
+            <button type="button" class="br-chip active" data-area="all">All Areas</button>
+            <button type="button" class="br-chip" data-area="Tala">Tala</button>
+            <button type="button" class="br-chip" data-area="Kalaroa">Kalaroa</button>
+            <button type="button" class="br-chip" data-area="Assasuni">Assasuni</button>
+            <button type="button" class="br-chip" data-area="Jashore">Jashore</button>
+            <button type="button" class="br-chip" data-area="Chowgacha">Chowgacha</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="br-result-bar">
+        <span id="brResultCount">Showing <b>30</b> of <b>30</b> branches</span>
+        <button type="button" class="btn btn-sm btn-link text-decoration-none text-muted" onclick="resetBranchFilters()">Reset Filters</button>
+      </div>
+
+      <div class="br-empty" id="brEmptyState" style="display:none;">
+        <div class="br-empty-ico"><i class="bi bi-search"></i></div>
+        <h4>No Branches Found</h4>
+        <p>Try adjusting your search query or area filters.</p>
+      </div>
+
+      <div class="row g-3 g-lg-4" id="cardsContainer"></div>
+    </div>
+  </main>
+
+  <footer class="br-credit-bar">
+    <div class="container d-flex justify-content-between flex-wrap gap-2">
+      <div>&copy; 2026 Branches Locator. All rights reserved.</div>
+      <div>Developed by <a href="https://royaltechbd.com/" target="_blank" rel="noopener">Royal Technologies</a></div>
+    </div>
+  </footer>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/branches-data.js"></script>
+  <script>
+    localStorage.setItem('branch_style', 'cards');
+  </script>
+  <script src="js/app.js"></script>
+</body>
+</html>
