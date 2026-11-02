@@ -24,6 +24,9 @@
 
   <!-- Application Styles (All 4 Styles & Themes) -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Branches Dataset Preloaded in Head -->
+  <script src="js/branches-data.js"></script>
 </head>
 <body>
 
@@ -184,7 +187,7 @@
       </div>
 
       <!-- ================= STYLE 1: MODERN CARD GRID ================= -->
-      <div class="row g-3 g-lg-4" id="cardsContainer">
+      <div class="row g-2 g-sm-3 g-lg-4" id="cardsContainer">
         <!-- Rendered dynamically by app.js -->
       </div>
 
@@ -272,9 +275,6 @@
       document.write('<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>');
     }
   </script>
-
-  <!-- Branches Dataset (30 Branches) -->
-  <script src="js/branches-data.js"></script>
 
   <!-- Application Controller -->
   <script src="js/app.js"></script>

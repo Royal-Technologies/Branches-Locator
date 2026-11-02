@@ -33,17 +33,19 @@
   const exportCsvBtn = document.getElementById('btnExportCsv');
   const printTableBtn = document.getElementById('btnPrintTable');
 
-  // Initialize
-  document.addEventListener('DOMContentLoaded', function () {
-    applyTheme(currentTheme);
-    initUrlParams();
-    setupStyleSwitcher();
-    setupFilters();
-    setupEventListeners();
-    initCountUp();
-    initScrollReveal();
-    renderAllViews();
-  });
+  // Reliable Source Fetcher
+  function getBranchesSource() {
+    if (typeof window !== 'undefined' && Array.isArray(window.BRANCHES_DATA) && window.BRANCHES_DATA.length > 0) {
+      return window.BRANCHES_DATA;
+    }
+    if (typeof globalThis !== 'undefined' && Array.isArray(globalThis.BRANCHES_DATA) && globalThis.BRANCHES_DATA.length > 0) {
+      return globalThis.BRANCHES_DATA;
+    }
+    if (typeof BRANCHES_DATA !== 'undefined' && Array.isArray(BRANCHES_DATA) && BRANCHES_DATA.length > 0) {
+      return BRANCHES_DATA;
+    }
+    return [];
+  }
 
   // Calculate distance using Haversine formula (km)
   function getDistance(lat1, lon1, lat2, lon2) {
@@ -60,19 +62,22 @@
 
   // Filter Branches
   function getFilteredBranches() {
-    if (!window.BRANCHES_DATA) return [];
+    const source = getBranchesSource();
+    if (!source || source.length === 0) return [];
     
-    let list = window.BRANCHES_DATA.filter(b => {
+    let list = source.filter(b => {
       // Area match
-      if (currentArea !== 'all' && b.area.toLowerCase() !== currentArea.toLowerCase()) {
+      if (currentArea && currentArea !== 'all' && b.area.toLowerCase() !== currentArea.toLowerCase()) {
         return false;
       }
       // District match
-      if (currentDistrict !== 'all' && b.district_en.toLowerCase() !== currentDistrict.toLowerCase() && b.district !== currentDistrict) {
-        return false;
+      if (currentDistrict && currentDistrict !== 'all') {
+        const dMatch = (b.district_en && b.district_en.toLowerCase() === currentDistrict.toLowerCase()) ||
+                       (b.district && b.district === currentDistrict);
+        if (!dMatch) return false;
       }
       // Search match
-      if (searchQuery.trim() !== '') {
+      if (searchQuery && searchQuery.trim() !== '') {
         const q = searchQuery.toLowerCase().trim();
         const searchPool = [
           b.name,
@@ -138,10 +143,11 @@
   // Render All Active Views
   function renderAllViews() {
     const list = getFilteredBranches();
+    const totalCount = getBranchesSource().length || 30;
 
     // Update Counter
     if (resultCountEl) {
-      resultCountEl.innerHTML = `Showing <b>${list.length}</b> of <b>${window.BRANCHES_DATA ? window.BRANCHES_DATA.length : 30}</b> branches`;
+      resultCountEl.innerHTML = `Showing <b>${list.length}</b> of <b>${totalCount}</b> branches`;
     }
 
     // Toggle Empty State
@@ -161,7 +167,7 @@
     }
   }
 
-  // 1. Render Cards Grid
+  // 1. Render Cards Grid (Matching Unnayan Prochesta Design)
   function renderCards(list) {
     if (!cardsContainer) return;
     if (list.length === 0) {
@@ -170,9 +176,9 @@
     }
 
     const html = list.map((b, index) => {
-      const delay = Math.min((index % 8) * 60, 480);
+      const delay = Math.min((index % 8) * 50, 400);
       return `
-        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 br-reveal is-visible" style="--delay: ${delay}ms;">
+        <div class="col-6 col-md-4 col-lg-3 br-reveal is-visible" style="--delay: ${delay}ms;">
           <article class="br-card h-100">
             <span class="br-shine"></span>
 
@@ -182,14 +188,12 @@
                 <i class="bi bi-building"></i>
               </div>
               <span class="br-img-fade"></span>
-              <span class="br-dist-badge">${b.district}</span>
               <span class="br-area-badge"><i class="bi bi-geo-alt-fill"></i> ${b.area}</span>
             </div>
 
             <!-- Body -->
             <div class="br-body">
-              <h3 class="br-name">${b.name} Branch</h3>
-              <div class="br-bn-name">${b.bn_name}</div>
+              <h3 class="br-name">${b.name}</h3>
 
               <ul class="br-meta">
                 <li class="br-addr">
@@ -212,15 +216,10 @@
                 ` : ''}
               </ul>
 
-              <!-- Actions -->
-              <div class="br-card-actions">
-                <a href="${b.map_url}" target="_blank" rel="noopener" class="br-btn" title="Get Directions">
-                  <span>Directions</span> <i class="bi bi-arrow-right"></i>
-                </a>
-                <a href="tel:${b.phone}" class="br-btn-call" title="Call Branch">
-                  <i class="bi bi-telephone"></i>
-                </a>
-              </div>
+              <!-- Direction Action Button -->
+              <a href="${b.map_url}" target="_blank" rel="noopener" class="br-btn">
+                <span>Direction</span> <i class="bi bi-arrow-right"></i>
+              </a>
             </div>
           </article>
         </div>
@@ -239,7 +238,9 @@
     }
 
     // Clear previous markers
-    mapMarkers.forEach(m => leafletMap.removeLayer(m));
+    mapMarkers.forEach(m => {
+      if (leafletMap) leafletMap.removeLayer(m);
+    });
     mapMarkers = [];
 
     // Render Sidebar List
@@ -280,52 +281,54 @@
       });
     });
 
-    // Add Markers to Map
-    const bounds = [];
-    list.forEach(b => {
-      const customIcon = L.divIcon({
-        className: 'custom-div-icon',
-        html: `<div class="custom-branch-marker" id="marker-${b.id}"><i class="bi bi-building"></i></div>`,
-        iconSize: [34, 34],
-        iconAnchor: [17, 34],
-        popupAnchor: [0, -32]
-      });
-
-      const popupHtml = `
-        <div class="map-popup-card">
-          <h4>${b.name} Branch</h4>
-          <div class="small fw-bold text-success mb-1">${b.bn_name} (${b.district})</div>
-          <p class="mb-2">${b.address}</p>
-          <div class="d-flex align-items-center justify-content-between gap-2 mt-2">
-            <a href="tel:${b.phone}" class="btn btn-sm btn-outline-success rounded-pill fw-bold">
-              <i class="bi bi-telephone-fill"></i> ${b.phone}
-            </a>
-            <a href="${b.map_url}" target="_blank" rel="noopener" class="btn btn-sm btn-primary rounded-pill fw-bold text-white">
-              Directions &raquo;
-            </a>
-          </div>
-        </div>
-      `;
-
-      const marker = L.marker([b.lat, b.lng], { icon: customIcon }).addTo(leafletMap);
-      marker.bindPopup(popupHtml);
-      marker.branchId = b.id;
-
-      marker.on('click', () => {
-        document.querySelectorAll('.map-branch-item').forEach(el => {
-          el.classList.toggle('is-selected', parseInt(el.dataset.id, 10) === b.id);
-          if (parseInt(el.dataset.id, 10) === b.id) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }
+    // Add Markers to Map if Leaflet is initialized
+    if (leafletMap && typeof L !== 'undefined') {
+      const bounds = [];
+      list.forEach(b => {
+        const customIcon = L.divIcon({
+          className: 'custom-div-icon',
+          html: `<div class="custom-branch-marker" id="marker-${b.id}"><i class="bi bi-building"></i></div>`,
+          iconSize: [34, 34],
+          iconAnchor: [17, 34],
+          popupAnchor: [0, -32]
         });
+
+        const popupHtml = `
+          <div class="map-popup-card">
+            <h4>${b.name} Branch</h4>
+            <div class="small fw-bold text-success mb-1">${b.bn_name} (${b.district})</div>
+            <p class="mb-2">${b.address}</p>
+            <div class="d-flex align-items-center justify-content-between gap-2 mt-2">
+              <a href="tel:${b.phone}" class="btn btn-sm btn-outline-success rounded-pill fw-bold">
+                <i class="bi bi-telephone-fill"></i> ${b.phone}
+              </a>
+              <a href="${b.map_url}" target="_blank" rel="noopener" class="btn btn-sm btn-primary rounded-pill fw-bold text-white">
+                Direction &raquo;
+              </a>
+            </div>
+          </div>
+        `;
+
+        const marker = L.marker([b.lat, b.lng], { icon: customIcon }).addTo(leafletMap);
+        marker.bindPopup(popupHtml);
+        marker.branchId = b.id;
+
+        marker.on('click', () => {
+          document.querySelectorAll('.map-branch-item').forEach(el => {
+            el.classList.toggle('is-selected', parseInt(el.dataset.id, 10) === b.id);
+            if (parseInt(el.dataset.id, 10) === b.id) {
+              el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          });
+        });
+
+        mapMarkers.push(marker);
+        bounds.push([b.lat, b.lng]);
       });
 
-      mapMarkers.push(marker);
-      bounds.push([b.lat, b.lng]);
-    });
-
-    if (bounds.length > 0 && leafletMap) {
-      leafletMap.fitBounds(bounds, { padding: [40, 40], maxZoom: 13 });
+      if (bounds.length > 0) {
+        leafletMap.fitBounds(bounds, { padding: [40, 40], maxZoom: 13 });
+      }
     }
   }
 
@@ -334,37 +337,39 @@
     const mapElement = document.getElementById('leafletMap');
     if (!mapElement || typeof L === 'undefined') return;
 
-    // Centered at Southwestern Bangladesh (Satkhira / Jashore / Khulna region)
-    leafletMap = L.map('leafletMap', {
-      zoomControl: true,
-      scrollWheelZoom: true
-    }).setView([22.75, 89.15], 10);
+    try {
+      leafletMap = L.map('leafletMap', {
+        zoomControl: true,
+        scrollWheelZoom: true
+      }).setView([22.75, 89.15], 10);
 
-    // Map Base Layers (Free OpenStreetMap & Esri)
-    const osmStandard = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors | Royal Technologies'
-    });
+      const osmStandard = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors | Royal Technologies'
+      });
 
-    const esriSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom: 18,
-      attribution: 'Tiles &copy; Esri | Royal Technologies'
-    });
+      const esriSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 18,
+        attribution: 'Tiles &copy; Esri | Royal Technologies'
+      });
 
-    const openTopo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-      maxZoom: 17,
-      attribution: 'Map data: &copy; OpenTopoMap contributors'
-    });
+      const openTopo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        maxZoom: 17,
+        attribution: 'Map data: &copy; OpenTopoMap contributors'
+      });
 
-    osmStandard.addTo(leafletMap);
+      osmStandard.addTo(leafletMap);
 
-    const baseMaps = {
-      "OpenStreetMap": osmStandard,
-      "Satellite Imagery": esriSatellite,
-      "Topographic Map": openTopo
-    };
+      const baseMaps = {
+        "OpenStreetMap": osmStandard,
+        "Satellite Imagery": esriSatellite,
+        "Topographic Map": openTopo
+      };
 
-    L.control.layers(baseMaps).addTo(leafletMap);
+      L.control.layers(baseMaps).addTo(leafletMap);
+    } catch (e) {
+      console.warn('Leaflet initialization deferred:', e);
+    }
   }
 
   // 3. Render District & Upazila Grouped Directory
@@ -375,7 +380,6 @@
       return;
     }
 
-    // Group by District
     const grouped = {};
     list.forEach(b => {
       const dist = b.district || 'Other';
@@ -389,10 +393,10 @@
 
       return `
         <div class="district-group-card ${isOpen ? 'is-open' : ''}" id="distCard-${distIdx}">
-          <div class="district-header" onclick="this.parentElement.classList.toggle('is-open')">
+          <div class="district-header">
             <h4 class="district-title">
               <i class="bi bi-geo-alt-fill text-success"></i>
-              <span>${distName} জেলা (${branches[0].district_en} District)</span>
+              <span>${distName} জেলা (${branches[0].district_en || distName} District)</span>
               <span class="district-badge-count">${branches.length} Branches</span>
             </h4>
             <i class="bi bi-chevron-down district-collapse-icon"></i>
@@ -417,7 +421,7 @@
 
                   <div class="dir-branch-actions">
                     <a href="${b.map_url}" target="_blank" rel="noopener" class="btn btn-sm btn-primary rounded-pill flex-grow-1">
-                      <i class="bi bi-geo-alt-fill me-1"></i> Directions
+                      <i class="bi bi-geo-alt-fill me-1"></i> Direction
                     </a>
                     <a href="tel:${b.phone}" class="btn btn-sm btn-outline-success rounded-pill px-3">
                       <i class="bi bi-telephone-fill"></i>
@@ -436,10 +440,11 @@
     // Attach dynamic toggling
     document.querySelectorAll('.district-header').forEach(hdr => {
       hdr.addEventListener('click', function () {
-        const body = this.nextElementSibling;
         const card = this.parentElement;
+        const body = card.querySelector('.district-body');
         const isOpen = card.classList.contains('is-open');
-        body.style.display = isOpen ? 'block' : 'none';
+        card.classList.toggle('is-open', !isOpen);
+        if (body) body.style.display = isOpen ? 'none' : 'block';
       });
     });
   }
@@ -495,7 +500,6 @@
 
   // Setup Event Listeners
   function setupEventListeners() {
-    // Search input
     if (searchInput) {
       searchInput.addEventListener('input', function (e) {
         searchQuery = e.target.value;
@@ -503,7 +507,6 @@
       });
     }
 
-    // District Dropdown
     if (districtSelect) {
       districtSelect.addEventListener('change', function (e) {
         currentDistrict = e.target.value;
@@ -511,7 +514,6 @@
       });
     }
 
-    // GPS "Near Me" Button
     if (gpsBtn) {
       gpsBtn.addEventListener('click', function () {
         if (!navigator.geolocation) {
@@ -535,14 +537,13 @@
           function (err) {
             gpsBtn.disabled = false;
             gpsBtn.innerHTML = `<i class="bi bi-geo-alt-fill"></i> Near Me`;
-            alert('Unable to retrieve your location. Please check browser permissions.');
+            alert('Unable to retrieve location. Please check browser permissions.');
           },
           { timeout: 10000 }
         );
       });
     }
 
-    // Theme Toggle
     if (themeBtn) {
       themeBtn.addEventListener('click', function () {
         const themes = ['default', 'sapphire', 'dark'];
@@ -551,12 +552,10 @@
       });
     }
 
-    // Export CSV
     if (exportCsvBtn) {
       exportCsvBtn.addEventListener('click', exportToCSV);
     }
 
-    // Print
     if (printTableBtn) {
       printTableBtn.addEventListener('click', function () {
         window.print();
@@ -572,7 +571,6 @@
       });
     });
 
-    // Initial style application
     switchStyle(currentStyle);
   }
 
@@ -710,7 +708,7 @@
     }
   }
 
-  // Global helper for resetting filters
+  // Reset Filters Helper
   window.resetBranchFilters = function () {
     currentArea = 'all';
     currentDistrict = 'all';
@@ -722,5 +720,39 @@
     if (gpsBtn) gpsBtn.innerHTML = `<i class="bi bi-geo-alt-fill"></i> Near Me`;
     renderAllViews();
   };
+
+  // Main Initialize Routine
+  function init() {
+    applyTheme(currentTheme);
+    initUrlParams();
+    setupStyleSwitcher();
+    setupFilters();
+    setupEventListeners();
+    initCountUp();
+    initScrollReveal();
+
+    // Check if data is already loaded synchronously
+    if (getBranchesSource().length > 0) {
+      renderAllViews();
+    } else {
+      // Asynchronous JSON fallback
+      fetch('data/branches.json')
+        .then(res => res.json())
+        .then(data => {
+          window.BRANCHES_DATA = data;
+          renderAllViews();
+        })
+        .catch(err => {
+          console.error('Error fetching data fallback:', err);
+          renderAllViews();
+        });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 
 })();
